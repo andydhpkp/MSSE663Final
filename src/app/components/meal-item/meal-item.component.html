@@ -1,0 +1,7 @@
+<div class="task">
+  <h3>
+    {{food.name}}
+    <fa-icon (click)="onDelete(food)" [ngStyle]="{ color: 'red' }" [icon]="faTimes"></fa-icon>
+  </h3>
+  <p>{{food.type}}</p>
+</div>

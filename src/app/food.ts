@@ -1,4 +1,4 @@
 export interface food {
   name: string;
-  nutrition: number;
+  type?: string;
 }

@@ -1,24 +1,23 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CreateAccountComponent } from './create-account/create-account.component';
-import { CreateMealPlanComponent } from './create-meal-plan/create-meal-plan.component';
-import { HomeComponent } from './home/home.component';
-import { InsideComponent } from './inside/inside.component';
-import { LoginComponent } from './login/login.component';
-import { MealPlanHistoryComponent } from './meal-plan-history/meal-plan-history.component';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home';
+import { AuthGuard } from './_helpers';
+
+const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
+const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
 
 const routes: Routes = [
-  { path: 'create-account', component: CreateAccountComponent },
-  { path: 'create-meal-plan', component: CreateMealPlanComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'inside', component: InsideComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'meal-plan-history', component: MealPlanHistoryComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
+    { path: 'account', loadChildren: accountModule },
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
