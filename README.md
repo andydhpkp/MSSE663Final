@@ -1,5 +1,7 @@
 # FinalApp663
 
+I attempted to build an application that made use of the USDA API, but I had too much trouble figuring our how to connect to it. I then changed the idea to just tracking a meal plan made by a user, and I built a fake backend to practice with. While I found enough success with the fake backend for registering users, when I attempted to build my first interactions with a database and API, I ultimately came up short and did not finish.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
 ## Development server
